@@ -1,0 +1,35 @@
+{
+  "name": "anicheck",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./build/index.js",
+    "debug": "nodemon ./src/index.ts",
+    "build": "tsc -p ."
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "apollo-server": "^3.13.0",
+    "bcrypt": "^5.1.1",
+    "class-validator": "^0.14.2",
+    "config": "^3.3.12",
+    "dotenv": "^16.5.0",
+    "fancy-log": "^2.0.0",
+    "graphql": "^16.11.0",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.14.1",
+    "nanoid": "^5.1.5",
+    "reflect-metadata": "^0.2.2",
+    "type-graphql": "^2.0.0-rc.2",
+    "typeorm": "^0.3.22"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/fancy-log": "^2.0.2",
+    "@types/jsonwebtoken": "^9.0.9",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3"
+  }
+}
