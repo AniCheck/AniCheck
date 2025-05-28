@@ -1,4 +1,9 @@
 import { DataSource } from "typeorm"
+import User from "./model/User"
+import UserReview from "./model/UserReview"
+import UserProgress from "./model/UserProgress"
+import AnimeEntry from "./model/AnimeEntry"
+import MangaEntry from "./model/MangaEntry"
 
 export async function connectToDB(){
     try {
@@ -10,7 +15,7 @@ export async function connectToDB(){
             username:"anicheck",
             password:"123456",
             synchronize:true,
-            entities:
+            entities:[User, UserReview, UserProgress, AnimeEntry, MangaEntry]
         })
         await appDataSource.initialize()
         console.log("database initialized")

@@ -1,5 +1,7 @@
-import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import UserReview from "./UserReview";
+import AnimeEntry from "./AnimeEntry";
+import MangaEntry from "./MangaEntry";
 
 @Entity("User")
 export default class User extends BaseEntity{
@@ -20,4 +22,10 @@ export default class User extends BaseEntity{
 
     @OneToMany(() => UserReview, (Review) => Review.User)
     Reviews: UserReview[]
+
+    @ManyToMany(() => AnimeEntry, {eager:true})
+    AnimeEntries: AnimeEntry[]
+
+    @ManyToMany(() => MangaEntry, {eager:true})
+    MangaEntries: MangaEntry[]
 }
