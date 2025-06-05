@@ -9,10 +9,10 @@ export default class User extends BaseEntity{
     UserID: number
 
     @Column()
-    Token: string
+    PasswordHash: string
 
-    @Column({unique: true})
-    ProfilePic: string
+    @Column({unique: true, nullable: true})
+    ProfilePic?: string
 
     @Column()
     UserName: string
@@ -23,9 +23,9 @@ export default class User extends BaseEntity{
     @OneToMany(() => UserReview, (Review) => Review.User)
     Reviews: UserReview[]
 
-    @ManyToMany(() => AnimeEntry, {eager:true})
+    @OneToMany(() => AnimeEntry, (Entry) => Entry.User, {eager:true})
     AnimeEntries: AnimeEntry[]
 
-    @ManyToMany(() => MangaEntry, {eager:true})
+    @OneToMany(() => MangaEntry, (Entry) => Entry.User, {eager:true})
     MangaEntries: MangaEntry[]
 }
