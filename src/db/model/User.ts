@@ -2,30 +2,40 @@ import { BaseEntity, Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColu
 import UserReview from "./UserReview";
 import AnimeEntry from "./AnimeEntry";
 import MangaEntry from "./MangaEntry";
+import { Field, Int, ObjectType } from "type-graphql";
 
+@ObjectType()
 @Entity("User")
-export default class User extends BaseEntity{
+export default class User extends BaseEntity {
     @PrimaryGeneratedColumn()
+    @Field(() => Int!)
     UserID: number
 
     @Column()
-    Token: string
+    @Field(() => String!)
+    PasswordHash: string
 
-    @Column({unique: true})
-    ProfilePic: string
+    @Column({ unique: true, nullable: true })
+    @Field(() => String)
+    ProfilePic?: string
 
     @Column()
+    @Field(() => String!)
     UserName: string
 
-    @Column({nullable: true})
+    @Column({ nullable: true })
+    @Field(() => String)
     TitlePref?: string
 
     @OneToMany(() => UserReview, (Review) => Review.User)
+    @Field(() => [UserReview!]!)
     Reviews: UserReview[]
 
-    @ManyToMany(() => AnimeEntry, {eager:true})
+    @OneToMany(() => AnimeEntry, (Entry) => Entry.User, { eager: true })
+    @Field(() => [AnimeEntry!]!)
     AnimeEntries: AnimeEntry[]
 
-    @ManyToMany(() => MangaEntry, {eager:true})
+    @OneToMany(() => MangaEntry, (Entry) => Entry.User, { eager: true })
+    @Field(() => [MangaEntry!]!)
     MangaEntries: MangaEntry[]
 }
