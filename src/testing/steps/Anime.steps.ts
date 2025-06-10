@@ -5,10 +5,7 @@ import { fetchAnime, searchAnime } from "../../anilist/fetchAnime";
 let anime: any;
 let animeResults: any;
 
-Given("the AniCheck API is available", function () {
-  // This step is a placeholder for setup; always passes.
-  // In a real test, you might ping the API or check health.
-});
+Given("the AniCheck API is available", function () {});
 
 When("I fetch the anime by id {int}", async function (id: number) {
   anime = await fetchAnime(id);
