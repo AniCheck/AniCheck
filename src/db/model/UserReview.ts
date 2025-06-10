@@ -18,11 +18,11 @@ export default class UserReview extends BaseEntity {
     Review: string
 
     @Column({ nullable: true })
-    @Field(() => Int)
+    @Field(() => Int, { nullable: true })
     MangaID?: number
 
     @Column({ nullable: true })
-    @Field(() => Int)
+    @Field(() => Int, { nullable: true })
     AnimeID?: number
 
     @ManyToOne(() => User, { eager: true })

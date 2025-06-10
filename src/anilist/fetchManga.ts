@@ -19,16 +19,18 @@ const GET_MANGA = gql`
 `;
 
 const SEARCH_MANGA = gql`
-  query SearchManga($name: String) {
-    Media(query:$name, type: MANGA) {
+query SearchManga($name: String) {
+  Page(page: 1, perPage: 50) {
+    media(search: $name, type: MANGA) {
       id
       title {
         romaji
         english
-        }
-    episodes
-    status
+      }
+      episodes
+      status
     }
+  }
 }
 `;
 
@@ -45,15 +47,17 @@ type MangaResponse = {
 };
 
 type MangaArrayResponse = {
-  Media: {
-    id: number
-    title: {
-      romaji: string
-      english: string | null
-    }
-    chapters: number
-    status: string
-  }[]
+  Page: {
+    media: {
+      id: number
+      title: {
+        romaji: string
+        english: string | null
+      }
+      chapters: number
+      status: string
+    }[]
+  }
 };
 export async function fetchManga(id: number) {
   const variables = { id }
@@ -64,5 +68,5 @@ export async function fetchManga(id: number) {
 export async function searchManga(name: string) {
   const variables = { name }
   const data = await graphQLClient.request<MangaArrayResponse>(SEARCH_MANGA, variables)
-  return data.Media
+  return data.Page.media
 }

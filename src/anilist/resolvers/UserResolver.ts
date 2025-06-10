@@ -40,7 +40,14 @@ export default class UserResolver {
         @Arg('profilePic', { nullable: true }) pic?: string,
 
 
-    ) {
+    ): Promise<User> {
+
+        const existingUser = await User.findOne({ where: { UserName: username } });
+
+        if (existingUser) {
+            throw new ApolloError("Username is already taken.")
+        }
+
         const hash = hashPassword(password)
         const user = new User();
         user.UserName = username;
@@ -74,7 +81,7 @@ export default class UserResolver {
         const MangaEntries = user.MangaEntries.map((MangaEntry) => {
             const userEntry = new UserMediaEntry()
             userEntry.id = MangaEntry.MangaEntryID
-            userEntry.mediaType = "ANIME"
+            userEntry.mediaType = "MANGA"
             userEntry.mediaId = MangaEntry.MangaID
             userEntry.progressStatus = MangaEntry.UserProgress
             userEntry.rating = MangaEntry.Rating

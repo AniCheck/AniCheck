@@ -7,4 +7,7 @@ export class UpdateMangaEntryInput {
 
     @Field(() => Int, { nullable: true })
     progress?: number
+
+    @Field(() => Int, { nullable: true })
+    rating?: number
 }

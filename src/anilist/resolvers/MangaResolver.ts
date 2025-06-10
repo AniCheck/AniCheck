@@ -32,32 +32,48 @@ class Manga {
     @Field(() => String)
     status!: string
 
-    @Field(() => [UserReview!]!)
-    userReviews!: UserReview[]
+    @Field(() => [UserReview!])
+    userReviews: UserReview[]
 }
 
 @Resolver()
 export class MangaResolver {
     @Query(() => Manga)
     async getManga(@Arg("id", () => Int) id: number): Promise<Manga> {
-        const manga = await fetchManga(id) as Manga
-        manga.userReviews = await UserReview.find({
-            where: {
-                MangaID: manga.id
-            }
-        })
+        const mangaRes = await fetchManga(id);
+
+        const manga = {
+            id: mangaRes.id,
+            title: mangaRes.title,
+            status: mangaRes.status,
+            chapters: mangaRes.chapters,
+            userReviews: await UserReview.find({
+                where: {
+                    MangaID: mangaRes.id
+                }
+            })
+        } as Manga
+
         return manga
     }
 
-    @Query(() => [Manga!]!)
+    @Query(() => [Manga!])
     async Manga(@Arg("name", () => String) name: string): Promise<Manga[]> {
-        var mangaList = await searchManga(name) as Manga[]
+        var mangaList = await searchManga(name)
         const reviewList = await UserReview.find()
-        mangaList = mangaList.map(manga => {
-            manga.userReviews = reviewList.filter(review => review.MangaID === manga.id)
+
+        const newList = mangaList.map(mangaRes => {
+            const manga = {
+                id: mangaRes.id,
+                title: mangaRes.title,
+                status: mangaRes.status,
+                chapters: mangaRes.chapters,
+                userReviews: reviewList.filter(review => review.MangaID === mangaRes.id)
+            } as Manga
             return manga
         })
-        return mangaList
+
+        return newList;
     }
 
     @Mutation(() => Boolean)
@@ -85,6 +101,10 @@ export class MangaResolver {
                 throw new ApolloError('Invalid input')
 
             entry.UserProgress = userProgress
+        }
+
+        if (data.rating !== undefined) {
+            entry.Rating = data.rating
         }
 
         await MangaEntry.save(entry)

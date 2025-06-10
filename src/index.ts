@@ -11,12 +11,24 @@ import User from './db/model/User'
 import { verifyJwt } from './utils/jwt'
 import UserResolver from './anilist/resolvers/UserResolver'
 import { connectToDB } from './db/mysql'
+import UserProgress from './db/model/UserProgress'
 
 
 
 async function startEndPoint() {
-    log("Connecting to database")
-    connectToDB()
+log("Connecting to database")
+    await connectToDB()
+
+    if(await UserProgress.count() == 0) {
+        const entries = ["PLANNING", "WATCHING", "PAUSED", "DROPPED", "COMPLETED"];
+
+        entries.forEach(async entry => {
+            const newEntry = new UserProgress();
+
+            newEntry.UserProgress = entry;
+            await UserProgress.save(newEntry);
+        })
+    }
     log("Building schema")
     const schema = await buildSchema({ resolvers: [AnimeResolver, MangaResolver, UserResolver] })
 
@@ -40,7 +52,7 @@ async function startEndPoint() {
 
             return ctx;
         },
-        plugins: [asc.ApolloServerPluginLandingPageLocalDefault()] //querry
+        plugins: [asc.ApolloServerPluginLandingPageLocalDefault()] //query
     })
 
     await server.start()
@@ -53,17 +65,3 @@ async function startEndPoint() {
     log("System to be initialized")
 }
 startEndPoint().catch((error) => { log.error(error) })
-//TO RUN THE SERVER "npm run dev"
-//TO END THE SERVER "CTRL + C"
-
-// query {
-//     getAnime(id: 149118) {
-//       id
-//       title {
-//         romaji
-//         english  IN A SEC
-//       }
-//       episodes
-//       status
-//     }
-//   }

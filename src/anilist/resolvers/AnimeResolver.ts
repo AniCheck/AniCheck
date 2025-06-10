@@ -84,6 +84,9 @@ export class AnimeResolver {
 
       entry.UserProgress = userProgress
     }
+    if (data.rating !== undefined) {
+      entry.Rating = data.rating
+    }
 
     await AnimeEntry.save(entry)
     return true
