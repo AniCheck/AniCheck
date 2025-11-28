@@ -1,0 +1,4632 @@
+[
+  {
+    "description": "  As an anime platform administrator and security analyst\n  I want to comprehensively test anime data operations\n  So that I can ensure robust performance, security, and data integrity",
+    "elements": [
+      {
+        "description": "",
+        "id": "advanced-anime-discovery-&-security-platform;enhanced-anime-retrieval-with-performance-tracking",
+        "keyword": "Scenario",
+        "line": 9,
+        "name": "Enhanced anime retrieval with performance tracking",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 814208
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 10,
+            "name": "I fetch the anime by id 1",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:21"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 515265208
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 11,
+            "name": "I should receive anime details",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:25"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 266235
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 12,
+            "name": "the anime id should be 1",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:35"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 310933
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-anime-discovery-&-security-platform;anime-data-validation-for-high-value-id",
+        "keyword": "Scenario",
+        "line": 14,
+        "name": "Anime data validation for high-value ID",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 188990
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 15,
+            "name": "I fetch the anime by id 16498",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:21"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 194832304
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 16,
+            "name": "I should receive anime details",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:25"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 139612
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 17,
+            "name": "the anime id should be 16498",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:35"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 116355
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 18,
+            "name": "the anime title should not be empty",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:39"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 399631
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-anime-discovery-&-security-platform;sql-injection-prevention-in-anime-search",
+        "keyword": "Scenario",
+        "line": 20,
+        "name": "SQL injection prevention in anime search",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 269097
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 21,
+            "name": "I search for anime with name \"'; DROP TABLE anime; --\"",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:46"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 45911910,
+              "error_message": "Error: GraphQL Error (Code: 403): {\"response\":{\"status\":403,\"headers\":{}},\"request\":{\"query\":\"\\nquery SearchAnime($name: String) {\\n  Page(page: 1, perPage: 50) {\\n    media(search: $name, type: ANIME) {\\n      id\\n      title {\\n        romaji\\n        english\\n      }\\n      episodes\\n      status\\n    }\\n  }\\n}\\n\",\"variables\":{\"name\":\"'; DROP TABLE anime; --\"}}}\n    at runRequest (file:///mnt/d/programing/anicheck_testavimas/AniCheck/node_modules/graphql-request/src/legacy/helpers/runRequest.ts:75:12)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async GraphQLClient.request (file:///mnt/d/programing/anicheck_testavimas/AniCheck/node_modules/graphql-request/src/legacy/classes/GraphQLClient.ts:131:22)\n    at async searchAnime (/mnt/d/programing/anicheck_testavimas/AniCheck/src/anilist/fetchAnime.ts:71:16)\n    at async World.<anonymous> (/mnt/d/programing/anicheck_testavimas/AniCheck/src/testing/steps/Anime.steps.ts:47:18)"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 22,
+            "name": "I should receive a list of anime results",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:50"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-anime-discovery-&-security-platform;xss-prevention-in-anime-search-functionality",
+        "keyword": "Scenario",
+        "line": 24,
+        "name": "XSS prevention in anime search functionality",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 102178
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 25,
+            "name": "I search for anime with name \"<script>alert('XSS')</script>\"",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:46"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 436698867
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 26,
+            "name": "I should receive a list of anime results",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:50"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 116983
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-anime-discovery-&-security-platform;command-injection-prevention-testing",
+        "keyword": "Scenario",
+        "line": 28,
+        "name": "Command injection prevention testing",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 42253
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 29,
+            "name": "I search for anime with name \"anime && rm -rf /\"",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:46"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 252067231
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 30,
+            "name": "I should receive a list of anime results",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:50"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 57549
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-anime-discovery-&-security-platform;unicode-anime-search-with-japanese-characters",
+        "keyword": "Scenario",
+        "line": 32,
+        "name": "Unicode anime search with Japanese characters",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 52799
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 33,
+            "name": "I search for anime with name \"進撃の巨人\"",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:46"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 231881286
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 34,
+            "name": "I should receive a list of anime results",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:50"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 64883
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 35,
+            "name": "at least one result should have a title",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:57"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 125295
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-anime-discovery-&-security-platform;mixed-language-anime-search-capability",
+        "keyword": "Scenario",
+        "line": 37,
+        "name": "Mixed language anime search capability",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 40229
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 38,
+            "name": "I search for anime with name \"Attack on Titan\"",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:46"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 209825829
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 39,
+            "name": "I should receive a list of anime results",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:50"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 143104
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-anime-discovery-&-security-platform;invalid-anime-id-boundary-testing",
+        "keyword": "Scenario",
+        "line": 41,
+        "name": "Invalid anime ID boundary testing",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 93517
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 42,
+            "name": "I fetch the anime by id 999999999",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:21"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 197570431,
+              "error_message": "Error: GraphQL Error (Code: 404): {\"response\":{\"status\":404,\"headers\":{}},\"request\":{\"query\":\"\\n  query GetAnime($id: Int) {\\n    Media(id: $id, type: ANIME) {\\n      id\\n      title {\\n        romaji\\n        english\\n        }\\n    episodes\\n    status\\n    }\\n}\\n\",\"variables\":{\"id\":999999999}}}\n    at runRequest (file:///mnt/d/programing/anicheck_testavimas/AniCheck/node_modules/graphql-request/src/legacy/helpers/runRequest.ts:75:12)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async GraphQLClient.request (file:///mnt/d/programing/anicheck_testavimas/AniCheck/node_modules/graphql-request/src/legacy/classes/GraphQLClient.ts:131:22)\n    at async fetchAnime (/mnt/d/programing/anicheck_testavimas/AniCheck/src/anilist/fetchAnime.ts:65:16)\n    at async World.<anonymous> (/mnt/d/programing/anicheck_testavimas/AniCheck/src/testing/steps/Anime.steps.ts:22:11)"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 43,
+            "name": "I should not receive anime details",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:31"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-anime-discovery-&-security-platform;negative-anime-id-handling",
+        "keyword": "Scenario",
+        "line": 45,
+        "name": "Negative anime ID handling",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 60133
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 46,
+            "name": "I fetch the anime by id -1",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:21"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 189668939,
+              "error_message": "Error: GraphQL Error (Code: 404): {\"response\":{\"status\":404,\"headers\":{}},\"request\":{\"query\":\"\\n  query GetAnime($id: Int) {\\n    Media(id: $id, type: ANIME) {\\n      id\\n      title {\\n        romaji\\n        english\\n        }\\n    episodes\\n    status\\n    }\\n}\\n\",\"variables\":{\"id\":-1}}}\n    at runRequest (file:///mnt/d/programing/anicheck_testavimas/AniCheck/node_modules/graphql-request/src/legacy/helpers/runRequest.ts:75:12)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async GraphQLClient.request (file:///mnt/d/programing/anicheck_testavimas/AniCheck/node_modules/graphql-request/src/legacy/classes/GraphQLClient.ts:131:22)\n    at async fetchAnime (/mnt/d/programing/anicheck_testavimas/AniCheck/src/anilist/fetchAnime.ts:65:16)\n    at async World.<anonymous> (/mnt/d/programing/anicheck_testavimas/AniCheck/src/testing/steps/Anime.steps.ts:22:11)"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 47,
+            "name": "I should not receive anime details",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:31"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-anime-discovery-&-security-platform;zero-anime-id-edge-case",
+        "keyword": "Scenario",
+        "line": 49,
+        "name": "Zero anime ID edge case",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 54825
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 50,
+            "name": "I fetch the anime by id 0",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:21"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 245239479,
+              "error_message": "Error: GraphQL Error (Code: 404): {\"response\":{\"status\":404,\"headers\":{}},\"request\":{\"query\":\"\\n  query GetAnime($id: Int) {\\n    Media(id: $id, type: ANIME) {\\n      id\\n      title {\\n        romaji\\n        english\\n        }\\n    episodes\\n    status\\n    }\\n}\\n\",\"variables\":{\"id\":0}}}\n    at runRequest (file:///mnt/d/programing/anicheck_testavimas/AniCheck/node_modules/graphql-request/src/legacy/helpers/runRequest.ts:75:12)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async GraphQLClient.request (file:///mnt/d/programing/anicheck_testavimas/AniCheck/node_modules/graphql-request/src/legacy/classes/GraphQLClient.ts:131:22)\n    at async fetchAnime (/mnt/d/programing/anicheck_testavimas/AniCheck/src/anilist/fetchAnime.ts:65:16)\n    at async World.<anonymous> (/mnt/d/programing/anicheck_testavimas/AniCheck/src/testing/steps/Anime.steps.ts:22:11)"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 51,
+            "name": "I should not receive anime details",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:31"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-anime-discovery-&-security-platform;single-character-search-performance",
+        "keyword": "Scenario",
+        "line": 53,
+        "name": "Single character search performance",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 54197
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 54,
+            "name": "I search for anime with name \"a\"",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:46"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 205921213
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 55,
+            "name": "I should receive a list of anime results",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:50"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 86742
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-anime-discovery-&-security-platform;empty-search-query-handling",
+        "keyword": "Scenario",
+        "line": 57,
+        "name": "Empty search query handling",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 63904
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 58,
+            "name": "I search for anime with name \"\"",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:46"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 218044541
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 59,
+            "name": "I should receive no anime results",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:76"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 118241
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-anime-discovery-&-security-platform;very-long-search-query-handling",
+        "keyword": "Scenario",
+        "line": 61,
+        "name": "Very long search query handling",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 67885
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 62,
+            "name": "I search for anime with name \"VeryLongAnimeSearchQuery\"",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:46"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 266659169
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 63,
+            "name": "I should receive a list of anime results",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:50"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 50495
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-anime-discovery-&-security-platform;special-characters-in-anime-search",
+        "keyword": "Scenario",
+        "line": 65,
+        "name": "Special characters in anime search",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 27167
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 66,
+            "name": "I search for anime with name \"!@#$%^&*()\"",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:46"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 242220659
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 67,
+            "name": "I should receive a list of anime results",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:50"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 57270
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-anime-discovery-&-security-platform;popular-anime-search-functionality",
+        "keyword": "Scenario",
+        "line": 69,
+        "name": "Popular anime search functionality",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 28005
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 70,
+            "name": "I search for anime with name \"Naruto\"",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:46"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 207718788
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 71,
+            "name": "I should receive a list of anime results",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:50"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 60064
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 72,
+            "name": "at least one result should have a title",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:57"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 25980
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-anime-discovery-&-security-platform;non-existent-anime-search-handling",
+        "keyword": "Scenario",
+        "line": 74,
+        "name": "Non-existent anime search handling",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 25842
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 75,
+            "name": "I search for anime with name \"nonexistentanime12345\"",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:46"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 259948819
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 76,
+            "name": "I should receive no anime results",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:76"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 97707
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-anime-discovery-&-security-platform;buffer-overflow-prevention-testing",
+        "keyword": "Scenario",
+        "line": 78,
+        "name": "Buffer overflow prevention testing",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 105250
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 79,
+            "name": "I search for anime with name \"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\"",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:46"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 322805970
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 80,
+            "name": "I should receive a list of anime results",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:50"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 111535
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-anime-discovery-&-security-platform;concurrent-anime-requests-handling",
+        "keyword": "Scenario",
+        "line": 82,
+        "name": "Concurrent anime requests handling",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 62507
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 83,
+            "name": "I fetch the anime by id 1",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:21"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 202776329
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 84,
+            "name": "I fetch the anime by id 2",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:21"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 219278567,
+              "error_message": "Error: GraphQL Error (Code: 404): {\"response\":{\"status\":404,\"headers\":{}},\"request\":{\"query\":\"\\n  query GetAnime($id: Int) {\\n    Media(id: $id, type: ANIME) {\\n      id\\n      title {\\n        romaji\\n        english\\n        }\\n    episodes\\n    status\\n    }\\n}\\n\",\"variables\":{\"id\":2}}}\n    at runRequest (file:///mnt/d/programing/anicheck_testavimas/AniCheck/node_modules/graphql-request/src/legacy/helpers/runRequest.ts:75:12)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async GraphQLClient.request (file:///mnt/d/programing/anicheck_testavimas/AniCheck/node_modules/graphql-request/src/legacy/classes/GraphQLClient.ts:131:22)\n    at async fetchAnime (/mnt/d/programing/anicheck_testavimas/AniCheck/src/anilist/fetchAnime.ts:65:16)\n    at async World.<anonymous> (/mnt/d/programing/anicheck_testavimas/AniCheck/src/testing/steps/Anime.steps.ts:22:11)"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 85,
+            "name": "I fetch the anime by id 3",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:21"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 86,
+            "name": "I should receive anime details",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:25"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "advanced-anime-discovery-&-security-platform",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Advanced Anime Discovery & Security Platform",
+    "tags": [],
+    "uri": "src/testing/features/Anime.feature"
+  },
+  {
+    "description": "  As a cybersecurity specialist\n  I want to thoroughly test authentication mechanisms\n  So that I can ensure comprehensive security coverage and prevent vulnerabilities",
+    "elements": [
+      {
+        "description": "",
+        "id": "advanced-authentication-&-security-testing;secure-user-registration-with-strong-password-requirements",
+        "keyword": "Scenario",
+        "line": 10,
+        "name": "Secure user registration with strong password requirements",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 74520
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 11,
+            "name": "I register with username \"secureuser\" and password \"SecureP@ss123!\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 183124
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 12,
+            "name": "the user should be created",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:346"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 47142
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-authentication-&-security-testing;multi-layered-authentication-security-validation",
+        "keyword": "Scenario",
+        "line": 14,
+        "name": "Multi-layered authentication security validation",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 25352
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 15,
+            "name": "I register with username \"multilayer\" and password \"MultiL@yer123!\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 123828
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 16,
+            "name": "the user should be created",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:346"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 27237
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 17,
+            "name": "I register with username \"multilayer\" and password \"DifferentP@ss456!\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 65372
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 18,
+            "name": "the user should not be created",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:350"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 50145
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-authentication-&-security-testing;sql-injection-prevention-in-authentication",
+        "keyword": "Scenario",
+        "line": 21,
+        "name": "SQL injection prevention in authentication",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 29053
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 22,
+            "name": "I register with username \"admin'; DROP TABLE users; SELECT * FROM passwords WHERE '1'='1\" and password \"sqlinjection\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 76336
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 23,
+            "name": "the user should be created",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:346"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 25282
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-authentication-&-security-testing;nosql-injection-prevention-testing",
+        "keyword": "Scenario",
+        "line": 25,
+        "name": "NoSQL injection prevention testing",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 23885
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 26,
+            "name": "I register with username \"admin\\\"; db.users.drop(); var x=\\\"\" and password \"nosqlinjection\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 84018
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 27,
+            "name": "the user should be created",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:346"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 28075
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-authentication-&-security-testing;ldap-injection-prevention-in-authentication",
+        "keyword": "Scenario",
+        "line": 29,
+        "name": "LDAP injection prevention in authentication",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 23885
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 30,
+            "name": "I register with username \"admin)(|(uid=*))\" and password \"ldapinjection\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 67257
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 31,
+            "name": "the user should be created",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:346"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 25772
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-authentication-&-security-testing;command-injection-prevention-via-authentication",
+        "keyword": "Scenario",
+        "line": 33,
+        "name": "Command injection prevention via authentication",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 31498
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 34,
+            "name": "I register with username \"admin && cat /etc/passwd || echo hacked\" and password \"cmdinjection\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 77244
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 35,
+            "name": "the user should be created",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:346"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 24723
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-authentication-&-security-testing;xss-prevention-in-username-field",
+        "keyword": "Scenario",
+        "line": 38,
+        "name": "XSS prevention in username field",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 23326
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 39,
+            "name": "I register with username \"<script>document.cookie='hacked=true'</script>\" and password \"xsstest\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 67396
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 40,
+            "name": "the user should be created",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:346"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 24234
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-authentication-&-security-testing;advanced-xss-payload-prevention",
+        "keyword": "Scenario",
+        "line": 42,
+        "name": "Advanced XSS payload prevention",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 23046
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 43,
+            "name": "I register with username \"javascript:alert('XSS')//\\\";alert('XSS');//\" and password \"advancedxss\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 66208
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 44,
+            "name": "the user should be created",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:346"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 23395
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-authentication-&-security-testing;authentication-bypass-with-null-bytes",
+        "keyword": "Scenario",
+        "line": 47,
+        "name": "Authentication bypass with null bytes",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 23326
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 48,
+            "name": "I register with username \"admin\\x00\" and password \"nullbytetest\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 65091
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 49,
+            "name": "the user should be created",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:346"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 102945
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-authentication-&-security-testing;unicode-normalization-attack-prevention",
+        "keyword": "Scenario",
+        "line": 51,
+        "name": "Unicode normalization attack prevention",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 28075
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 52,
+            "name": "I register with username \"ａｄｍｉｎ\" and password \"unicodenorm\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 74730
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 53,
+            "name": "the user should be created",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:346"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 23745
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-authentication-&-security-testing;password-complexity-enforcement---weak-password",
+        "keyword": "Scenario",
+        "line": 56,
+        "name": "Password complexity enforcement - weak password",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 21021
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 57,
+            "name": "I register with username \"weakpasstest\" and password \"123\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 60132
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 58,
+            "name": "the user should be created",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:346"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 23745
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-authentication-&-security-testing;password-with-all-character-types",
+        "keyword": "Scenario",
+        "line": 60,
+        "name": "Password with all character types",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 21510
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 61,
+            "name": "I register with username \"strongpass\" and password \"Str0ng!P@ssw0rd#2024\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 61529
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 62,
+            "name": "the user should be created",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:346"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 21021
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-authentication-&-security-testing;rapid-registration-attempt-monitoring",
+        "keyword": "Scenario",
+        "line": 65,
+        "name": "Rapid registration attempt monitoring",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 41067
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 66,
+            "name": "I register with username \"rapid1\" and password \"RapidTest123!\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 56641
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 67,
+            "name": "I register with username \"rapid2\" and password \"RapidTest123!\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 60412
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 68,
+            "name": "I register with username \"rapid3\" and password \"RapidTest123!\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 50984
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 69,
+            "name": "I register with username \"rapid4\" and password \"RapidTest123!\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 50425
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 70,
+            "name": "I register with username \"rapid5\" and password \"RapidTest123!\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 51264
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 71,
+            "name": "the user should be created",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:346"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 18577
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-authentication-&-security-testing;unicode-username-with-special-encoding",
+        "keyword": "Scenario",
+        "line": 74,
+        "name": "Unicode username with special encoding",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 20603
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 75,
+            "name": "I register with username \"用户名测试🔐\" and password \"UnicodeP@ss123!\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 58667
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 76,
+            "name": "the user should be created",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:346"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 26679
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-authentication-&-security-testing;cyrillic-characters-in-authentication",
+        "keyword": "Scenario",
+        "line": 78,
+        "name": "Cyrillic characters in authentication",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 20113
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 79,
+            "name": "I register with username \"ПользовательТест\" and password \"КириллицаП@роль123!\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 57268
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 80,
+            "name": "the user should be created",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:346"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 18857
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-authentication-&-security-testing;arabic-script-authentication-testing",
+        "keyword": "Scenario",
+        "line": 82,
+        "name": "Arabic script authentication testing",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 17460
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 83,
+            "name": "I register with username \"مستخدم_اختبار\" and password \"كلمة_مرور_قوية123!\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 72146
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 84,
+            "name": "the user should be created",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:346"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 20602
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-authentication-&-security-testing;maximum-length-username-boundary-test",
+        "keyword": "Scenario",
+        "line": 87,
+        "name": "Maximum length username boundary test",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 18229
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 88,
+            "name": "I register with username \"MaxLengthUsernameTestingBoundaryConditionsForSecurityValidationPurposesWithVeryLongStringToTestSystemLimitsAndOverflowPrevention\" and password \"BoundaryTest123!\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 56152
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 89,
+            "name": "the user should be created",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:346"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 17530
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-authentication-&-security-testing;special-character-combinations-in-passwords",
+        "keyword": "Scenario",
+        "line": 91,
+        "name": "Special character combinations in passwords",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 17389
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 92,
+            "name": "I register with username \"specialchars\" and password \"!@#$%^&*()_+-=[]{}|;':\\\",./<>?\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 54475
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 93,
+            "name": "the user should be created",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:346"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 17600
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-authentication-&-security-testing;empty-field-validation-with-security-implications",
+        "keyword": "Scenario",
+        "line": 96,
+        "name": "Empty field validation with security implications",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 23745
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 97,
+            "name": "I register with username \"\" and password \"EmptyUserTest123!\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 106647
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 98,
+            "name": "the user should not be created",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:350"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 27656
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-authentication-&-security-testing;whitespace-only-credentials-security-test",
+        "keyword": "Scenario",
+        "line": 100,
+        "name": "Whitespace-only credentials security test",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 19416
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 101,
+            "name": "I register with username \"   \" and password \"   \"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 86812
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 102,
+            "name": "the user should not be created",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:350"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 2891708,
+              "error_message": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\ntrue !== false\n\n    + expected - actual\n\n    -true\n    +false\n\n    at World.<anonymous> (/mnt/d/programing/anicheck_testavimas/AniCheck/src/testing/steps/User.steps.ts:351:10)"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-authentication-&-security-testing;case-sensitive-duplicate-prevention-testing",
+        "keyword": "Scenario",
+        "line": 105,
+        "name": "Case-sensitive duplicate prevention testing",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 114889
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 106,
+            "name": "I register with username \"CaseSensitiveTest\" and password \"CaseTest123!\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 186126
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 107,
+            "name": "the user should be created",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:346"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 46374
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 108,
+            "name": "I register with username \"casesensitivetest\" and password \"CaseTest456!\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 59156
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 109,
+            "name": "the user should be created",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:346"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 498875,
+              "error_message": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\nfalse !== true\n\n    + expected - actual\n\n    -false\n    +true\n\n    at World.<anonymous> (/mnt/d/programing/anicheck_testavimas/AniCheck/src/testing/steps/User.steps.ts:347:10)"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-authentication-&-security-testing;error-message-consistency-for-security",
+        "keyword": "Scenario",
+        "line": 111,
+        "name": "Error message consistency for security",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 45466
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 112,
+            "name": "I register with username \"errortest\" and password \"ErrorTest123!\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 111676
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 113,
+            "name": "the user should be created",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:346"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 28076
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 114,
+            "name": "I register with username \"errortest\" and password \"DifferentPass456!\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 68724
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 115,
+            "name": "I should receive a duplicate username error",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:354"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 72914
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "advanced-authentication-&-security-testing",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Advanced Authentication & Security Testing",
+    "tags": [],
+    "uri": "src/testing/features/Authentication.feature"
+  },
+  {
+    "description": "  As a manga enthusiast and API consumer\n  I want to perform comprehensive manga operations\n  So that I can efficiently discover, validate, and manage manga data",
+    "elements": [
+      {
+        "description": "",
+        "id": "advanced-manga-crud-operations;get-manga-with-performance-monitoring",
+        "keyword": "Scenario",
+        "line": 10,
+        "name": "GET manga with performance monitoring",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 20672
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 11,
+            "name": "I am testing manga API performance",
+            "match": {
+              "location": "src/testing/steps/Manga.steps.ts:12"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 42394
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 12,
+            "name": "I fetch the manga by id 1",
+            "match": {
+              "location": "src/testing/steps/Manga.steps.ts:18"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 276029146
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 13,
+            "name": "I should receive valid manga data structure",
+            "match": {
+              "location": "src/testing/steps/Manga.steps.ts:231"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 676413,
+              "error_message": "AssertionError [ERR_ASSERTION]: Manga should be returned\n    at World.<anonymous> (/mnt/d/programing/anicheck_testavimas/AniCheck/src/testing/steps/Manga.steps.ts:232:10)"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 14,
+            "name": "the response time should be under 2000 milliseconds",
+            "result": {
+              "status": "ambiguous",
+              "duration": 0
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-manga-crud-operations;get-manga-with-data-integrity-validation",
+        "keyword": "Scenario",
+        "line": 16,
+        "name": "GET manga with data integrity validation",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 62018
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 17,
+            "name": "I validate manga data integrity for id 1",
+            "match": {
+              "location": "src/testing/steps/Manga.steps.ts:134"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 204161074
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 18,
+            "name": "the manga data should pass integrity validation",
+            "match": {
+              "location": "src/testing/steps/Manga.steps.ts:307"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 1130869,
+              "error_message": "AssertionError [ERR_ASSERTION]: Should have validation results\n    at World.<anonymous> (/mnt/d/programing/anicheck_testavimas/AniCheck/src/testing/steps/Manga.steps.ts:308:10)"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 19,
+            "name": "I should receive valid manga data structure",
+            "match": {
+              "location": "src/testing/steps/Manga.steps.ts:231"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-manga-crud-operations;get-manga-with-error-handling-for-non-existent-id",
+        "keyword": "Scenario",
+        "line": 21,
+        "name": "GET manga with error handling for non-existent ID",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 65789
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 22,
+            "name": "I fetch the manga by id 999999",
+            "match": {
+              "location": "src/testing/steps/Manga.steps.ts:18"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 201061169
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 23,
+            "name": "I should receive an error response with code 404",
+            "match": {
+              "location": "src/testing/steps/Manga.steps.ts:296"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 160146
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-manga-crud-operations;get-manga-with-advanced-filtering",
+        "keyword": "Scenario",
+        "line": 26,
+        "name": "GET manga with advanced filtering",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 41345
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 27,
+            "name": "I search for manga with advanced filters '{\"query\": \"One Piece\", \"genre\": \"Action\", \"minScore\": 80}'",
+            "match": {
+              "location": "src/testing/steps/Manga.steps.ts:48"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 207887455
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 28,
+            "name": "I should receive filtered results matching '{\"genre\": \"Action\", \"minScore\": 80}'",
+            "match": {
+              "location": "src/testing/steps/Manga.steps.ts:331"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 155396
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 29,
+            "name": "I should receive a list of manga results",
+            "match": {
+              "location": "src/testing/steps/Manga.steps.ts:184"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 44419
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-manga-crud-operations;get-manga-with-pagination-and-sorting",
+        "keyword": "Scenario",
+        "line": 31,
+        "name": "GET manga with pagination and sorting",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 20183
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 32,
+            "name": "I search for manga with pagination '{\"page\": 1, \"perPage\": 5, \"sortBy\": \"SCORE_DESC\"}'",
+            "match": {
+              "location": "src/testing/steps/Manga.steps.ts:102"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 223111317
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 33,
+            "name": "I should receive paginated results with 5 items",
+            "match": {
+              "location": "src/testing/steps/Manga.steps.ts:263"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 100990
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 34,
+            "name": "the results should be sorted by \"SCORE_DESC\"",
+            "match": {
+              "location": "src/testing/steps/Manga.steps.ts:275"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 74242
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-manga-crud-operations;get-manga-search-with-complex-filters",
+        "keyword": "Scenario",
+        "line": 36,
+        "name": "GET manga search with complex filters",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 26330
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 37,
+            "name": "I search for manga with advanced filters '{\"query\": \"romance\", \"status\": \"FINISHED\", \"year\": 2020}'",
+            "match": {
+              "location": "src/testing/steps/Manga.steps.ts:48"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 262472954
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 38,
+            "name": "I should receive a list of manga results",
+            "match": {
+              "location": "src/testing/steps/Manga.steps.ts:184"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 80038
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-manga-crud-operations;batch-manga-retrieval-performance-test",
+        "keyword": "Scenario",
+        "line": 41,
+        "name": "Batch manga retrieval performance test",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 49727
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 42,
+            "name": "I am testing manga API performance",
+            "match": {
+              "location": "src/testing/steps/Manga.steps.ts:12"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 31988
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 43,
+            "name": "I perform batch manga requests for ids \"1, 2, 3, 4, 5\"",
+            "match": {
+              "location": "src/testing/steps/Manga.steps.ts:31"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 430552974
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 44,
+            "name": "the batch requests should have 60% success rate",
+            "match": {
+              "location": "src/testing/steps/Manga.steps.ts:248"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 862888,
+              "error_message": "AssertionError [ERR_ASSERTION]: Success rate 0% should be at least 60%\n    + expected - actual\n\n    -false\n    +true\n\n    at World.<anonymous> (/mnt/d/programing/anicheck_testavimas/AniCheck/src/testing/steps/Manga.steps.ts:256:12)"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 45,
+            "name": "the response time should be under 5000 milliseconds",
+            "result": {
+              "status": "ambiguous",
+              "duration": 0
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-manga-crud-operations;concurrent-request-stress-testing",
+        "keyword": "Scenario",
+        "line": 47,
+        "name": "Concurrent request stress testing",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 86812
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 48,
+            "name": "I am testing manga API performance",
+            "match": {
+              "location": "src/testing/steps/Manga.steps.ts:12"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 56152
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 49,
+            "name": "I perform stress test with 10 concurrent requests",
+            "match": {
+              "location": "src/testing/steps/Manga.steps.ts:86"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 484209236
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 50,
+            "name": "the concurrent requests should complete within 10 seconds",
+            "match": {
+              "location": "src/testing/steps/Manga.steps.ts:320"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 195206
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 51,
+            "name": "the batch requests should have 50% success rate",
+            "match": {
+              "location": "src/testing/steps/Manga.steps.ts:248"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 94565
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-manga-crud-operations;get-manga-search-with-malicious-input-sanitization",
+        "keyword": "Scenario",
+        "line": 54,
+        "name": "GET manga search with malicious input sanitization",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 51053
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 55,
+            "name": "I search for manga with name \"'; DROP TABLE manga; SELECT * FROM users WHERE '1'='1\"",
+            "match": {
+              "location": "src/testing/steps/Manga.steps.ts:44"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 51811681,
+              "error_message": "Error: GraphQL Error (Code: 429): {\"response\":{\"status\":429,\"headers\":{}},\"request\":{\"query\":\"\\nquery SearchManga($name: String) {\\n  Page(page: 1, perPage: 50) {\\n    media(search: $name, type: MANGA) {\\n      id\\n      title {\\n        romaji\\n        english\\n      }\\n      episodes\\n      status\\n    }\\n  }\\n}\\n\",\"variables\":{\"name\":\"'; DROP TABLE manga; SELECT * FROM users WHERE '1'='1\"}}}\n    at runRequest (file:///mnt/d/programing/anicheck_testavimas/AniCheck/node_modules/graphql-request/src/legacy/helpers/runRequest.ts:75:12)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async GraphQLClient.request (file:///mnt/d/programing/anicheck_testavimas/AniCheck/node_modules/graphql-request/src/legacy/classes/GraphQLClient.ts:131:22)\n    at async searchManga (/mnt/d/programing/anicheck_testavimas/AniCheck/src/anilist/fetchManga.ts:70:16)\n    at async World.<anonymous> (/mnt/d/programing/anicheck_testavimas/AniCheck/src/testing/steps/Manga.steps.ts:45:18)"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 56,
+            "name": "I should receive a list of manga results",
+            "match": {
+              "location": "src/testing/steps/Manga.steps.ts:184"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-manga-crud-operations;get-manga-search-with-unicode-and-special-characters",
+        "keyword": "Scenario",
+        "line": 58,
+        "name": "GET manga search with Unicode and special characters",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 50494
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 59,
+            "name": "I search for manga with name \"進撃の巨人 & マンガ検索 🔍\"",
+            "match": {
+              "location": "src/testing/steps/Manga.steps.ts:44"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 46606551,
+              "error_message": "Error: GraphQL Error (Code: 429): {\"response\":{\"status\":429,\"headers\":{}},\"request\":{\"query\":\"\\nquery SearchManga($name: String) {\\n  Page(page: 1, perPage: 50) {\\n    media(search: $name, type: MANGA) {\\n      id\\n      title {\\n        romaji\\n        english\\n      }\\n      episodes\\n      status\\n    }\\n  }\\n}\\n\",\"variables\":{\"name\":\"進撃の巨人 & マンガ検索 🔍\"}}}\n    at runRequest (file:///mnt/d/programing/anicheck_testavimas/AniCheck/node_modules/graphql-request/src/legacy/helpers/runRequest.ts:75:12)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async GraphQLClient.request (file:///mnt/d/programing/anicheck_testavimas/AniCheck/node_modules/graphql-request/src/legacy/classes/GraphQLClient.ts:131:22)\n    at async searchManga (/mnt/d/programing/anicheck_testavimas/AniCheck/src/anilist/fetchManga.ts:70:16)\n    at async World.<anonymous> (/mnt/d/programing/anicheck_testavimas/AniCheck/src/testing/steps/Manga.steps.ts:45:18)"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 60,
+            "name": "I should receive a list of manga results",
+            "match": {
+              "location": "src/testing/steps/Manga.steps.ts:184"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-manga-crud-operations;get-manga-with-extremely-large-id-boundary-testing",
+        "keyword": "Scenario",
+        "line": 62,
+        "name": "GET manga with extremely large ID boundary testing",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 69981
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 63,
+            "name": "I fetch the manga by id 2147483647",
+            "match": {
+              "location": "src/testing/steps/Manga.steps.ts:18"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 57719277
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 64,
+            "name": "I should receive an error response with code 404",
+            "match": {
+              "location": "src/testing/steps/Manga.steps.ts:296"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 65790
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-manga-crud-operations;get-manga-search-with-empty-results-validation",
+        "keyword": "Scenario",
+        "line": 67,
+        "name": "GET manga search with empty results validation",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 28914
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 68,
+            "name": "I search for manga with name \"nonexistentmangaquery12345xyz\"",
+            "match": {
+              "location": "src/testing/steps/Manga.steps.ts:44"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 42271921,
+              "error_message": "Error: GraphQL Error (Code: 429): {\"response\":{\"status\":429,\"headers\":{}},\"request\":{\"query\":\"\\nquery SearchManga($name: String) {\\n  Page(page: 1, perPage: 50) {\\n    media(search: $name, type: MANGA) {\\n      id\\n      title {\\n        romaji\\n        english\\n      }\\n      episodes\\n      status\\n    }\\n  }\\n}\\n\",\"variables\":{\"name\":\"nonexistentmangaquery12345xyz\"}}}\n    at runRequest (file:///mnt/d/programing/anicheck_testavimas/AniCheck/node_modules/graphql-request/src/legacy/helpers/runRequest.ts:75:12)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async GraphQLClient.request (file:///mnt/d/programing/anicheck_testavimas/AniCheck/node_modules/graphql-request/src/legacy/classes/GraphQLClient.ts:131:22)\n    at async searchManga (/mnt/d/programing/anicheck_testavimas/AniCheck/src/anilist/fetchManga.ts:70:16)\n    at async World.<anonymous> (/mnt/d/programing/anicheck_testavimas/AniCheck/src/testing/steps/Manga.steps.ts:45:18)"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 69,
+            "name": "I should receive no manga results",
+            "match": {
+              "location": "src/testing/steps/Manga.steps.ts:205"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-manga-crud-operations;get-manga-search-performance-with-single-character",
+        "keyword": "Scenario",
+        "line": 71,
+        "name": "GET manga search performance with single character",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 42951
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 72,
+            "name": "I am testing manga API performance",
+            "match": {
+              "location": "src/testing/steps/Manga.steps.ts:12"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 18507
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 73,
+            "name": "I search for manga with name \"a\"",
+            "match": {
+              "location": "src/testing/steps/Manga.steps.ts:44"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 57018838,
+              "error_message": "Error: GraphQL Error (Code: 429): {\"response\":{\"status\":429,\"headers\":{}},\"request\":{\"query\":\"\\nquery SearchManga($name: String) {\\n  Page(page: 1, perPage: 50) {\\n    media(search: $name, type: MANGA) {\\n      id\\n      title {\\n        romaji\\n        english\\n      }\\n      episodes\\n      status\\n    }\\n  }\\n}\\n\",\"variables\":{\"name\":\"a\"}}}\n    at runRequest (file:///mnt/d/programing/anicheck_testavimas/AniCheck/node_modules/graphql-request/src/legacy/helpers/runRequest.ts:75:12)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async GraphQLClient.request (file:///mnt/d/programing/anicheck_testavimas/AniCheck/node_modules/graphql-request/src/legacy/classes/GraphQLClient.ts:131:22)\n    at async searchManga (/mnt/d/programing/anicheck_testavimas/AniCheck/src/anilist/fetchManga.ts:70:16)\n    at async World.<anonymous> (/mnt/d/programing/anicheck_testavimas/AniCheck/src/testing/steps/Manga.steps.ts:45:18)"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 74,
+            "name": "I should receive a list of manga results",
+            "match": {
+              "location": "src/testing/steps/Manga.steps.ts:184"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 75,
+            "name": "the response time should be under 3000 milliseconds",
+            "result": {
+              "status": "ambiguous",
+              "duration": 0
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-manga-crud-operations;get-manga-search-with-japanese-title",
+        "keyword": "Scenario",
+        "line": 78,
+        "name": "GET manga search with Japanese title",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 69422
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 79,
+            "name": "I search for manga with name \"鬼滅の刃\"",
+            "match": {
+              "location": "src/testing/steps/Manga.steps.ts:44"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 43493097,
+              "error_message": "Error: GraphQL Error (Code: 429): {\"response\":{\"status\":429,\"headers\":{}},\"request\":{\"query\":\"\\nquery SearchManga($name: String) {\\n  Page(page: 1, perPage: 50) {\\n    media(search: $name, type: MANGA) {\\n      id\\n      title {\\n        romaji\\n        english\\n      }\\n      episodes\\n      status\\n    }\\n  }\\n}\\n\",\"variables\":{\"name\":\"鬼滅の刃\"}}}\n    at runRequest (file:///mnt/d/programing/anicheck_testavimas/AniCheck/node_modules/graphql-request/src/legacy/helpers/runRequest.ts:75:12)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async GraphQLClient.request (file:///mnt/d/programing/anicheck_testavimas/AniCheck/node_modules/graphql-request/src/legacy/classes/GraphQLClient.ts:131:22)\n    at async searchManga (/mnt/d/programing/anicheck_testavimas/AniCheck/src/anilist/fetchManga.ts:70:16)\n    at async World.<anonymous> (/mnt/d/programing/anicheck_testavimas/AniCheck/src/testing/steps/Manga.steps.ts:45:18)"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 80,
+            "name": "I should receive a list of manga results",
+            "match": {
+              "location": "src/testing/steps/Manga.steps.ts:184"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 81,
+            "name": "at least one result should have an english title",
+            "match": {
+              "location": "src/testing/steps/Manga.steps.ts:191"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "advanced-manga-crud-operations",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Advanced Manga CRUD Operations",
+    "tags": [],
+    "uri": "src/testing/features/Manga.feature"
+  },
+  {
+    "description": "  As a security-conscious application administrator  \n  I want to comprehensively test user management operations\n  So that I can ensure robust authentication, authorization, and data protection",
+    "elements": [
+      {
+        "description": "",
+        "id": "advanced-user-management-&-security;advanced-user-registration-with-comprehensive-validation",
+        "keyword": "Scenario",
+        "line": 11,
+        "name": "Advanced user registration with comprehensive validation",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 54127
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "I have a secure testing environment",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:16"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 101619
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 12,
+            "name": "I register with advanced credentials username \"secureuser\", password \"ComplexP@ss123!\", email \"secure@test.com\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:41"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 552514
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 13,
+            "name": "the user should be created",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:346"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 466539,
+              "error_message": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\nfalse !== true\n\n    + expected - actual\n\n    -false\n    +true\n\n    at World.<anonymous> (/mnt/d/programing/anicheck_testavimas/AniCheck/src/testing/steps/User.steps.ts:347:10)"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 14,
+            "name": "the password strength should be \"strong\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:412"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-user-management-&-security;user-authentication-with-session-management",
+        "keyword": "Scenario",
+        "line": 16,
+        "name": "User authentication with session management",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 50494
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "I have a secure testing environment",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:16"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 60552
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 17,
+            "name": "I am monitoring user session security",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:30"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 119918
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 18,
+            "name": "I register with username \"authuser\" and password \"AuthPass123!\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 116705
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 19,
+            "name": "I attempt login with username \"authuser\" and password \"AuthPass123!\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:120"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 214760
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 20,
+            "name": "I should receive a valid authentication token",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:358"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 51263
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 21,
+            "name": "the security audit should pass validation",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:398"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 315333,
+              "error_message": "AssertionError [ERR_ASSERTION]: Should have session validations\n    + expected - actual\n\n    -false\n    +true\n\n    at World.<anonymous> (/mnt/d/programing/anicheck_testavimas/AniCheck/src/testing/steps/User.steps.ts:399:10)"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-user-management-&-security;advanced-user-profile-management",
+        "keyword": "Scenario",
+        "line": 23,
+        "name": "Advanced user profile management",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 33174
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "I have a secure testing environment",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:16"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 20393
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 24,
+            "name": "I am monitoring user session security",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:30"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 22000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 25,
+            "name": "I register with username \"profileuser\" and password \"ProfilePass123!\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 81435
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 26,
+            "name": "I attempt login with username \"profileuser\" and password \"ProfilePass123!\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:120"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 68794
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 27,
+            "name": "I update user profile with data '{\"firstName\": \"John\", \"lastName\": \"Doe\", \"preferences\": {\"theme\": \"dark\", \"language\": \"en\"}}'",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:156"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 173555
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 28,
+            "name": "the user profile should be updated successfully",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:368"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 43929
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-user-management-&-security;sql-injection-prevention-in-user-registration",
+        "keyword": "Scenario",
+        "line": 31,
+        "name": "SQL injection prevention in user registration",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 19137
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "I have a secure testing environment",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:16"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 21650
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 32,
+            "name": "I validate user input sanitization with payload \"admin'; DROP TABLE users; --\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:255"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 237530
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 33,
+            "name": "the input sanitization should prevent injection attacks",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:430"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 68374
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-user-management-&-security;xss-prevention-in-user-data",
+        "keyword": "Scenario",
+        "line": 35,
+        "name": "XSS prevention in user data",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 26748
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "I have a secure testing environment",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:16"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 22908
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 36,
+            "name": "I validate user input sanitization with payload \"<script>alert('xss')</script>admin\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:255"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 221676
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 37,
+            "name": "the input sanitization should prevent injection attacks",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:430"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 33664
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-user-management-&-security;command-injection-prevention-testing",
+        "keyword": "Scenario",
+        "line": 39,
+        "name": "Command injection prevention testing",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 26260
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "I have a secure testing environment",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:16"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 28565
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 40,
+            "name": "I validate user input sanitization with payload \"user && rm -rf / --no-preserve-root\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:255"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 98546
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 41,
+            "name": "the input sanitization should prevent injection attacks",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:430"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 283765,
+              "error_message": "AssertionError [ERR_ASSERTION]: Malicious input should be sanitized\n    + expected - actual\n\n    -false\n    +true\n\n    at /mnt/d/programing/anicheck_testavimas/AniCheck/src/testing/steps/User.steps.ts:442:14\n    at World.<anonymous> (/mnt/d/programing/anicheck_testavimas/AniCheck/src/testing/steps/User.steps.ts:436:35)"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-user-management-&-security;account-lockout-after-multiple-failed-login-attempts",
+        "keyword": "Scenario",
+        "line": 44,
+        "name": "Account lockout after multiple failed login attempts",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 39111
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "I have a secure testing environment",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:16"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 28704
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 45,
+            "name": "I register with username \"locktest\" and password \"LockTest123!\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 105251
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 46,
+            "name": "I attempt login with username \"locktest\" and password \"wrongpass1\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:120"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 86742
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 47,
+            "name": "I attempt login with username \"locktest\" and password \"wrongpass2\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:120"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 59993
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 48,
+            "name": "I attempt login with username \"locktest\" and password \"wrongpass3\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:120"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 57199
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 49,
+            "name": "I attempt login with username \"locktest\" and password \"wrongpass4\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:120"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 82553
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 50,
+            "name": "I attempt login with username \"locktest\" and password \"wrongpass5\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:120"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 57618
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 51,
+            "name": "I attempt login with username \"locktest\" and password \"LockTest123!\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:120"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 54406
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 52,
+            "name": "I should receive an authentication error",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:363"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 561804,
+              "error_message": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\u001b[32m+ actual\u001b[39m \u001b[31m- expected\u001b[39m\n\n\u001b[32m+\u001b[39m null\n\u001b[31m- \u001b[39m'Invalid credentials'\n\n    at World.<anonymous> (/mnt/d/programing/anicheck_testavimas/AniCheck/src/testing/steps/User.steps.ts:364:10)"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-user-management-&-security;concurrent-session-management-and-security",
+        "keyword": "Scenario",
+        "line": 54,
+        "name": "Concurrent session management and security",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 45396
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "I have a secure testing environment",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:16"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 28565
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 55,
+            "name": "I register with username \"concurrent\" and password \"Concurrent123!\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 83740
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 56,
+            "name": "I attempt concurrent login sessions for user \"concurrent\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:237"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 181657
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 57,
+            "name": "the concurrent sessions should be managed properly",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:447"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 70818
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-user-management-&-security;bulk-user-registration-performance-testing",
+        "keyword": "Scenario",
+        "line": 60,
+        "name": "Bulk user registration performance testing",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 18507
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "I have a secure testing environment",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:16"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 21650
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 61,
+            "name": "I perform bulk user operations with 50 users",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:180"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 282438
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 62,
+            "name": "the bulk operation should create 50 users within 5 seconds",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:373"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 80177
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 63,
+            "name": "the system should handle 50 concurrent users efficiently",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:469"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 40437
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-user-management-&-security;user-registration-performance-monitoring",
+        "keyword": "Scenario",
+        "line": 65,
+        "name": "User registration performance monitoring",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 18367
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "I have a secure testing environment",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:16"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 23466
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 66,
+            "name": "I register with username \"perfuser1\" and password \"Performance123!\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 56710
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 67,
+            "name": "I register with username \"perfuser2\" and password \"Performance123!\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 48749
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 68,
+            "name": "I register with username \"perfuser3\" and password \"Performance123!\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 45326
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 69,
+            "name": "the average response time should be under 200 milliseconds",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:479"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 77103
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-user-management-&-security;comprehensive-user-security-audit",
+        "keyword": "Scenario",
+        "line": 72,
+        "name": "Comprehensive user security audit",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 26680
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "I have a secure testing environment",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:16"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 16692
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 73,
+            "name": "I am monitoring user session security",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:30"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 23816
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 74,
+            "name": "I register with username \"audituser\" and password \"AuditPass123!\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 78152
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 75,
+            "name": "I attempt login with username \"audituser\" and password \"AuditPass123!\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:120"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 175650
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 76,
+            "name": "I perform security audit for user \"audituser\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:214"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 219511
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 77,
+            "name": "the security audit should pass validation",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:398"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 489727,
+              "error_message": "AssertionError [ERR_ASSERTION]: Should have session validations\n    + expected - actual\n\n    -false\n    +true\n\n    at World.<anonymous> (/mnt/d/programing/anicheck_testavimas/AniCheck/src/testing/steps/User.steps.ts:399:10)"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-user-management-&-security;registration-with-weak-password-validation",
+        "keyword": "Scenario",
+        "line": 80,
+        "name": "Registration with weak password validation",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 51542
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "I have a secure testing environment",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:16"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 19066
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 81,
+            "name": "I register with advanced credentials username \"weakuser\", password \"123\", email \"weak@test.com\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:41"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 322317
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 82,
+            "name": "the user should not be created",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:350"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 363522,
+              "error_message": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\ntrue !== false\n\n    + expected - actual\n\n    -true\n    +false\n\n    at World.<anonymous> (/mnt/d/programing/anicheck_testavimas/AniCheck/src/testing/steps/User.steps.ts:351:10)"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 83,
+            "name": "the password strength should be \"weak\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:412"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-user-management-&-security;registration-with-invalid-email-format",
+        "keyword": "Scenario",
+        "line": 85,
+        "name": "Registration with invalid email format",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 60132
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "I have a secure testing environment",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:16"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 25213
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 86,
+            "name": "I register with advanced credentials username \"emailtest\", password \"EmailTest123!\", email \"invalid-email\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:41"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 164405
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 87,
+            "name": "the user should not be created",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:350"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 25841
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-user-management-&-security;registration-with-special-characters-and-internationalization",
+        "keyword": "Scenario",
+        "line": 89,
+        "name": "Registration with special characters and internationalization",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 17739
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "I have a secure testing environment",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:16"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 17529
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 90,
+            "name": "I register with advanced credentials username \"международный\", password \"国际密码123!\", email \"интернационал@тест.com\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:41"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 192342
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 91,
+            "name": "the user should be created",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:346"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 460672,
+              "error_message": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\nfalse !== true\n\n    + expected - actual\n\n    -false\n    +true\n\n    at World.<anonymous> (/mnt/d/programing/anicheck_testavimas/AniCheck/src/testing/steps/User.steps.ts:347:10)"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-user-management-&-security;simple-user-creation-with-standard-credentials",
+        "keyword": "Scenario",
+        "line": 94,
+        "name": "Simple user creation with standard credentials",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 56781
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "I have a secure testing environment",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:16"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 17040
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 95,
+            "name": "I register with username \"standarduser\" and password \"mypass123\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 117753
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 96,
+            "name": "the user should be created",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:346"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 22000
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-user-management-&-security;prevent-duplicate-usernames",
+        "keyword": "Scenario",
+        "line": 98,
+        "name": "Prevent duplicate usernames",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 26749
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "I have a secure testing environment",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:16"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 17320
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 99,
+            "name": "I register with username \"unique\" and password \"pass1\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 88139
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 100,
+            "name": "the user should be created",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:346"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 29543
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 101,
+            "name": "I register with username \"unique\" and password \"pass2\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 65300
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 102,
+            "name": "the user should not be created",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:350"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 21092
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-user-management-&-security;handle-emoji-and-unicode-characters-in-usernames",
+        "keyword": "Scenario",
+        "line": 104,
+        "name": "Handle emoji and Unicode characters in usernames",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 18577
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "I have a secure testing environment",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:16"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 17459
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 105,
+            "name": "I register with username \"test😀user\" and password \"emojitest\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 125783
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 106,
+            "name": "the user should be created",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:346"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 24585
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-user-management-&-security;security-injection-attempts-in-usernames",
+        "keyword": "Scenario",
+        "line": 108,
+        "name": "Security injection attempts in usernames",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 16551
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "I have a secure testing environment",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:16"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 15434
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 109,
+            "name": "I register with username \"<script>alert('test')</script>\" and password \"scripttest\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 66627
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 110,
+            "name": "the user should be created",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:346"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 17739
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "advanced-user-management-&-security;sql-injection-attempt-in-username",
+        "keyword": "Scenario",
+        "line": 112,
+        "name": "SQL injection attempt in username",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "the AniCheck API is available",
+            "match": {
+              "location": "src/testing/steps/Anime.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 15364
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "I have a secure testing environment",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:16"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 14736
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 113,
+            "name": "I register with username \"test'; DROP TABLE users;--\" and password \"sqltest\"",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 49726
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 114,
+            "name": "the user should be created",
+            "match": {
+              "location": "src/testing/steps/User.steps.ts:346"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 14806
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "advanced-user-management-&-security",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Advanced User Management & Security",
+    "tags": [],
+    "uri": "src/testing/features/User.feature"
+  }
+]
